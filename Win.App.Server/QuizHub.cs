@@ -39,7 +39,7 @@ namespace Win.App.Server
                 //Take note: the correct point should be set to correct person
                 //this is a simultaneous operation and person1 and person2 might send the answer 
                 //almost the same time and the server should handle it
-                Program.MainForm.label1.Text = Program.MainForm.CorrectPoint.ToString();
+                //Program.MainForm.label1.Text = Program.MainForm.CorrectPoint.ToString();
                 Program.MainForm.dataGridView1.Rows[0].Cells[1].Value = Program.MainForm.CorrectPoint.ToString();
             }
 

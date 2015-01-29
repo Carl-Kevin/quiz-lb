@@ -36,12 +36,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.EasyDataGrid = new System.Windows.Forms.DataGridView();
             this.PostQuestion = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.QuestionNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Question = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DifficultyLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EasyDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // listView1
@@ -97,7 +101,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView2);
+            this.tabPage1.Controls.Add(this.EasyDataGrid);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -116,26 +120,55 @@
             this.tabPage2.Text = "Average";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // EasyDataGrid
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PostQuestion});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(1145, 362);
-            this.dataGridView2.TabIndex = 0;
+            this.EasyDataGrid.AllowUserToAddRows = false;
+            this.EasyDataGrid.AllowUserToDeleteRows = false;
+            this.EasyDataGrid.AllowUserToOrderColumns = true;
+            this.EasyDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.EasyDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PostQuestion,
+            this.QuestionNumber,
+            this.Question,
+            this.TimeFrame,
+            this.DifficultyLevel});
+            this.EasyDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EasyDataGrid.Location = new System.Drawing.Point(3, 3);
+            this.EasyDataGrid.Name = "EasyDataGrid";
+            this.EasyDataGrid.ReadOnly = true;
+            this.EasyDataGrid.Size = new System.Drawing.Size(1145, 362);
+            this.EasyDataGrid.TabIndex = 0;
             // 
             // PostQuestion
             // 
             this.PostQuestion.HeaderText = "";
             this.PostQuestion.Name = "PostQuestion";
+            this.PostQuestion.ReadOnly = true;
             this.PostQuestion.Text = "Post Now";
+            // 
+            // QuestionNumber
+            // 
+            this.QuestionNumber.HeaderText = "Question Number";
+            this.QuestionNumber.Name = "QuestionNumber";
+            this.QuestionNumber.ReadOnly = true;
+            // 
+            // Question
+            // 
+            this.Question.HeaderText = "Question";
+            this.Question.Name = "Question";
+            this.Question.ReadOnly = true;
+            // 
+            // TimeFrame
+            // 
+            this.TimeFrame.HeaderText = "Time Frame";
+            this.TimeFrame.Name = "TimeFrame";
+            this.TimeFrame.ReadOnly = true;
+            // 
+            // DifficultyLevel
+            // 
+            this.DifficultyLevel.HeaderText = "DifficultyLevel";
+            this.DifficultyLevel.Name = "DifficultyLevel";
+            this.DifficultyLevel.ReadOnly = true;
             // 
             // Form1
             // 
@@ -151,7 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EasyDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -165,9 +198,13 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView EasyDataGrid;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridViewButtonColumn PostQuestion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuestionNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Question;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeFrame;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DifficultyLevel;
     }
 }
 

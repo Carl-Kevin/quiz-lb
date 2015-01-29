@@ -14,7 +14,8 @@ namespace Win.App.Server
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataGridView.CheckForIllegalCrossThreadCalls = false;
+            //DataGridView.CheckForIllegalCrossThreadCalls = false;
+            SetupQuiz();
         }
 
 
@@ -52,7 +53,6 @@ namespace Win.App.Server
             }
         }
 
-
         public void WriteToLog(string logMessage)
         {
             if (listView1.InvokeRequired)
@@ -65,25 +65,11 @@ namespace Win.App.Server
             listView1.Items.Add(logMessage);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //var quiz = QuestionFactory.GetRandomItem();
-            var quiz = QuestionFactory.GetNextItem();
-            HubContext.Clients.All.DisplayQuestion(quiz);
-        }
 
-        private void btnPrev_Click(object sender, EventArgs e)
+        private void SetupQuiz()
         {
-            var quiz = QuestionFactory.GetPreviousItem();
-            HubContext.Clients.All.DisplayQuestion(quiz);
-        }
 
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            var quiz = QuestionFactory.GetNextItem();
-            HubContext.Clients.All.DisplayQuestion(quiz);
         }
-
 
 
     }
