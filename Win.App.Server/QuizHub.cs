@@ -31,7 +31,7 @@ namespace Win.App.Server
             if (quiz.Answer2 != null) answer = quiz.Answer2;
             if (quiz.Answer3 != null) answer = quiz.Answer3;
             if (quiz.Answer4 != null) answer = quiz.Answer4;
-            if (quiz.C_Answer != null) answer1 = quiz.C_Answer;
+            if (quiz.CorrectAnswer != null) answer1 = quiz.CorrectAnswer;
 
             if (answer.Value == answer1.Value)
             {

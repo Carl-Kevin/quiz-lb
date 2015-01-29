@@ -8,6 +8,8 @@
         public Choice Answer3 { get; set; }
         public Choice Answer4 { get; set; }
         public string Time { get; set; }
-        public Choice C_Answer { get; set; }
+        public Choice CorrectAnswer { get; set; }
+
+        public DifficultyLevel DifficultyLevel { get; set; }
     }
 }
