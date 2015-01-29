@@ -86,6 +86,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -100,6 +102,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSource\Quiz.cs">
+      <DependentUpon>QuizBeeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataSource\QuizBeeModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizBeeModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataSource\QuizBeeModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizBeeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataSource\QuizBeeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizBeeModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +144,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="DataSource\QuizBeeModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuizBeeModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataSource\QuizBeeModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizBeeModel.edmx</DependentUpon>
+      <LastGenOutput>QuizBeeModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DataSource\QuizBeeModel.edmx.diagram">
+      <DependentUpon>QuizBeeModel.edmx</DependentUpon>
+    </None>
+    <None Include="DataSource\QuizBeeModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizBeeModel.edmx</DependentUpon>
+      <LastGenOutput>QuizBeeModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -166,6 +203,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DataSource\QuizBee_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>QuizBee.mdf</DependentUpon>
+    </Content>
+    <Content Include="QuizBee.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QuizBee_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>QuizBee.mdf</DependentUpon>
     </Content>
