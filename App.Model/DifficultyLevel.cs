@@ -1,10 +1,9 @@
 ﻿namespace App.Model
 {
     public enum DifficultyLevel
-
     {
-        Easy,
-        Average,
-        Difficult
+        Easy = 1,
+        Average = 2,
+        Difficult = 3
     }
 }
