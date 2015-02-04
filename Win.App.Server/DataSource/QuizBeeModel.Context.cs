@@ -6,6 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using App.Model;
 
 namespace Win.App.Server.DataSource
 {
@@ -25,6 +26,6 @@ namespace Win.App.Server.DataSource
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Quiz> Quizs { get; set; }
+        public virtual DbSet<Quiz> Quizes { get; set; }
     }
 }

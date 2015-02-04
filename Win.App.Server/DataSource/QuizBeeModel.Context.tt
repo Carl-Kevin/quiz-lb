@@ -26,9 +26,9 @@ if (container == null)
 // <#=CodeGenerationTools.GetResourceString("Template_GeneratedCodeCommentLine3")#>
 // </auto-generated>
 //------------------------------------------------------------------------------
+using App.Model;
 
 <#
-
 var codeNamespace = code.VsNamespaceSuggestion();
 if (!String.IsNullOrEmpty(codeNamespace))
 {

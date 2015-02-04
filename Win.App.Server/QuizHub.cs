@@ -21,19 +21,20 @@ namespace Win.App.Server
         }
 
 
-        
+
         public void QuestionAnswered(Quiz quiz, string userName)
         {
-            Choice answer = null;
-            Choice answer1 = null;
 
-            if (quiz.Answer1 != null) answer = quiz.Answer1;
-            if (quiz.Answer2 != null) answer = quiz.Answer2;
-            if (quiz.Answer3 != null) answer = quiz.Answer3;
-            if (quiz.Answer4 != null) answer = quiz.Answer4;
-            if (quiz.CorrectAnswer != null) answer1 = quiz.CorrectAnswer;
+            var answer = string.Empty;
+            var correctAnswer = string.Empty;
+            if (!string.IsNullOrEmpty(quiz.Option1)) answer = quiz.Option1;
+            if (!string.IsNullOrEmpty(quiz.Option2)) answer = quiz.Option2;
+            if (!string.IsNullOrEmpty(quiz.Option3)) answer = quiz.Option3;
+            if (!string.IsNullOrEmpty(quiz.Option4)) answer = quiz.Option4;
 
-            if (answer.Value == answer1.Value)
+            if (!string.IsNullOrEmpty(quiz.AnswerKey)) correctAnswer = quiz.AnswerKey;
+
+            if (answer.Equals(correctAnswer, StringComparison.OrdinalIgnoreCase))
             {
                 Program.MainForm.CorrectPoint++;
                 //Take note: the correct point should be set to correct person
@@ -44,12 +45,12 @@ namespace Win.App.Server
             }
 
 
-            var message = string.Format("{0} from {1} correct: {2}", answer.Value, userName, answer1.Value);
+            var message = string.Format("{0} from {1} correct: {2}", answer, userName, correctAnswer);
             Program.MainForm.WriteToLog(message);
-            
-            
+
+
         }
-        
-        
+
+
     }
 }

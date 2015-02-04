@@ -42,7 +42,7 @@
           <Property Name="DifficultyLevel" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="QuizBeeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+          <EntitySet Name="Quizes" EntityType="Self.Quiz" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -50,7 +50,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuizBeeModelStoreContainer" CdmEntityContainer="QuizBeeEntities">
-          <EntitySetMapping Name="Quizs">
+          <EntitySetMapping Name="Quizes">
             <EntityTypeMapping TypeName="QuizBeeModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
                 <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />

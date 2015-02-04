@@ -10,7 +10,7 @@ namespace Win.App.Client
 {
     public partial class Form1 : Form
     {
-        string timeCont;
+        int _timeFrame;
 
         private string _userName;
         public string UserName
@@ -43,13 +43,13 @@ namespace Win.App.Client
 
         public void DisplayQuestion(Quiz obj)
         {
-            QuestionLabel.Text = obj.Question;
-            radioButton1.Text = obj.Answer1.Value;
-            radioButton2.Text = obj.Answer2.Value;
-            radioButton3.Text = obj.Answer3.Value;
-            radioButton4.Text = obj.Answer4.Value;
-            timeCont = obj.Time;
-            CorrectLabel.Text = obj.C_Answer.Value;
+            QuestionLabel.Text = obj.Questions;
+            radioButton1.Text = obj.Option1;
+            radioButton2.Text = obj.Option2;
+            radioButton3.Text = obj.Option3;
+            radioButton4.Text = obj.Option4;
+            _timeFrame = obj.TimeFrame;
+            CorrectLabel.Text = obj.AnswerKey;
 
             //On the display of question set the timer on
             SetTimer(true);
@@ -89,7 +89,7 @@ namespace Win.App.Client
                 QuestionTimer.Enabled = true;
                 QuestionTimer.Start();
                 //set the time left as default value
-                _timeleft = Convert.ToInt32(timeCont);
+                _timeleft = Convert.ToInt32(_timeFrame);
             }
             else
             {
@@ -127,31 +127,30 @@ namespace Win.App.Client
 
             var quiz = new Quiz()
             {
-                Question = QuestionLabel.Text,
-                C_Answer = new Choice() { Value = CorrectLabel.Text },
+                Questions = QuestionLabel.Text,
+                AnswerKey = CorrectLabel.Text
             };
 
 
             if (radioButton1.Checked)
             {
-                quiz.Answer1 = new Choice() { Value = radioButton1.Text };
+                quiz.Option1 = radioButton1.Text ;
             }
             else if (radioButton2.Checked)
             {
-                quiz.Answer2 = new Choice() { Value = radioButton2.Text };
+                quiz.Option2 = radioButton2.Text;
 
             }
             else if (radioButton3.Checked)
             {
-                quiz.Answer3 = new Choice() { Value = radioButton3.Text };
-
+                quiz.Option3 = radioButton3.Text;
+                
             }
             else if (radioButton4.Checked)
             {
-                quiz.Answer4 = new Choice() { Value = radioButton4.Text };
+                quiz.Option4 = radioButton4.Text;
 
             }
-
 
             Program.QuizHubProxy.Invoke("QuestionAnswered", quiz, UserName);
 

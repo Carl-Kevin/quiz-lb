@@ -102,18 +102,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSource\Quiz.cs">
-      <DependentUpon>QuizBeeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataSource\QuizBeeModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QuizBeeModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataSource\QuizBeeModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuizBeeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataSource\QuizBeeModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -155,11 +147,6 @@
     </None>
     <None Include="DataSource\QuizBeeModel.edmx.diagram">
       <DependentUpon>QuizBeeModel.edmx</DependentUpon>
-    </None>
-    <None Include="DataSource\QuizBeeModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuizBeeModel.edmx</DependentUpon>
-      <LastGenOutput>QuizBeeModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

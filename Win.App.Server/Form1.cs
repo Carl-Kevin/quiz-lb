@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using App.Model;
 using Microsoft.AspNet.SignalR;
+using Win.App.Server.DataSource;
 
 namespace Win.App.Server
 {
@@ -19,11 +22,11 @@ namespace Win.App.Server
         }
 
 
-        
+
 
         public int CorrectPoint { get; set; }
- 
-	
+
+
 
         private IHubContext _hubContext;
         public IHubContext HubContext
@@ -69,6 +72,37 @@ namespace Win.App.Server
         private void SetupQuiz()
         {
 
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tabControl = sender as TabControl;
+            if (tabControl == null) return;
+            var selectedIndex = tabControl.SelectedIndex + 1;
+            switch (selectedIndex)
+            {
+                case 1:
+                    EasyDataGrid.DataSource = ReloadData(selectedIndex);
+                    break;
+                case 2:
+                    AverageDataGrid.DataSource = ReloadData(selectedIndex);
+                    break;
+                case 3:
+                    //TODO: Bind the other difficulty level grid here
+                    break;
+            }
+
+        }
+
+        private List<Quiz> ReloadData(int difficultyLevel)
+        {
+            List<Quiz> result;
+            using (var context = new QuizBeeEntities())
+            {
+                result = context.Quizes.Where(m => m.DifficultyLevel == difficultyLevel).ToList();
+            }
+
+            return result;
         }
 
 
