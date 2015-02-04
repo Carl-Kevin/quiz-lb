@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Forms;
@@ -10,6 +11,27 @@ namespace Win.App.Client
 {
     public partial class Form1 : Form
     {
+
+        public  IHubProxy QuizHubProxy;
+
+        public  async Task StartConnection()
+        {
+
+            var ipAddress = ConfigurationManager.AppSettings["ServerIpAddress"];
+            var portNumber = ConfigurationManager.AppSettings["ServerPort"];
+            var querystringData = new Dictionary<string, string> { { "user_name", UserName } };
+
+            var url = string.Format("http://{0}:{1}", ipAddress, portNumber);
+
+            var hubConnection = new HubConnection(url, querystringData);
+            QuizHubProxy = hubConnection.CreateHubProxy("QuizHub");
+
+            await hubConnection.Start();
+
+
+        }
+
+
         int _timeFrame;
 
         private string _userName;
@@ -17,13 +39,14 @@ namespace Win.App.Client
         {
             get
             {
-                if (_userName == null)
+                if (string.IsNullOrEmpty(_userName))
                 {
                     _userName = ConfigurationManager.AppSettings["UserName"];
                 }
 
                 return _userName;
             }
+            set { _userName = value; }
 
         }
 
@@ -37,8 +60,23 @@ namespace Win.App.Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Program.QuizHubProxy.On<Quiz>("DisplayQuestion", (quiz) => this.Invoke((Action)(() => DisplayQuestion(quiz))));
+            GetUserName();
+            QuizHubProxy.On<Quiz>("DisplayQuestion", (quiz) => this.Invoke((Action)(() => DisplayQuestion(quiz))));
             CorrectLabel.Visible = false;
+        }
+
+
+        private void GetUserName()
+        {
+            var form = new Registration();
+            var result = form.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                UserName = form.ContestantNameTextBox.Text;
+                StartConnection();
+            }
+
         }
 
         public void DisplayQuestion(Quiz obj)
@@ -134,7 +172,7 @@ namespace Win.App.Client
 
             if (radioButton1.Checked)
             {
-                quiz.Option1 = radioButton1.Text ;
+                quiz.Option1 = radioButton1.Text;
             }
             else if (radioButton2.Checked)
             {
@@ -144,7 +182,7 @@ namespace Win.App.Client
             else if (radioButton3.Checked)
             {
                 quiz.Option3 = radioButton3.Text;
-                
+
             }
             else if (radioButton4.Checked)
             {
@@ -152,7 +190,7 @@ namespace Win.App.Client
 
             }
 
-            Program.QuizHubProxy.Invoke("QuestionAnswered", quiz, UserName);
+            QuizHubProxy.Invoke("QuestionAnswered", quiz, UserName);
 
         }
 

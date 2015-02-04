@@ -37,8 +37,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.EasyDataGrid = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.PostQuestion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AverageDataGrid = new System.Windows.Forms.DataGridView();
+            this.PostQuestion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -125,6 +125,7 @@
             this.EasyDataGrid.ReadOnly = true;
             this.EasyDataGrid.Size = new System.Drawing.Size(1145, 362);
             this.EasyDataGrid.TabIndex = 0;
+            this.EasyDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
             // 
             // tabPage2
             // 
@@ -136,13 +137,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Average";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // PostQuestion
-            // 
-            this.PostQuestion.HeaderText = "";
-            this.PostQuestion.Name = "PostQuestion";
-            this.PostQuestion.ReadOnly = true;
-            this.PostQuestion.Text = "Post Now";
             // 
             // AverageDataGrid
             // 
@@ -158,6 +152,15 @@
             this.AverageDataGrid.ReadOnly = true;
             this.AverageDataGrid.Size = new System.Drawing.Size(1145, 362);
             this.AverageDataGrid.TabIndex = 1;
+            this.AverageDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
+            // 
+            // PostQuestion
+            // 
+            this.PostQuestion.HeaderText = "";
+            this.PostQuestion.Name = "PostQuestion";
+            this.PostQuestion.ReadOnly = true;
+            this.PostQuestion.Text = "Post Now";
+            this.PostQuestion.UseColumnTextForButtonValue = true;
             // 
             // dataGridViewButtonColumn1
             // 
@@ -165,6 +168,7 @@
             this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
             this.dataGridViewButtonColumn1.ReadOnly = true;
             this.dataGridViewButtonColumn1.Text = "Post Now";
+            this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
             // 
             // Form1
             // 
@@ -198,8 +202,8 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView EasyDataGrid;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridViewButtonColumn PostQuestion;
         private System.Windows.Forms.DataGridView AverageDataGrid;
+        private System.Windows.Forms.DataGridViewButtonColumn PostQuestion;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
     }
 }

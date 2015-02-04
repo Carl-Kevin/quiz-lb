@@ -12,12 +12,13 @@ namespace Win.App.Server
     {
         public Form1()
         {
+            DataGridView.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //DataGridView.CheckForIllegalCrossThreadCalls = false;
+
             SetupQuiz();
         }
 
@@ -71,7 +72,7 @@ namespace Win.App.Server
 
         private void SetupQuiz()
         {
-
+            EasyDataGrid.DataSource = ReloadData(1);
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,6 +104,19 @@ namespace Win.App.Server
             }
 
             return result;
+        }
+
+        private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            if (grid == null) return;
+
+            if (grid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                var quiz = grid.Rows[e.RowIndex].DataBoundItem as Quiz;
+                HubContext.Clients.All.DisplayQuestion(quiz);
+            }
+
         }
 
 

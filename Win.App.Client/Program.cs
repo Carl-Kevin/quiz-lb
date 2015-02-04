@@ -10,7 +10,7 @@ namespace Win.App.Client
     static class Program
     {
 
-        public static IHubProxy QuizHubProxy;
+    
 
         /// <summary>
         /// The main entry point for the application.
@@ -22,8 +22,7 @@ namespace Win.App.Client
         [STAThread]
         static void Main()
         {
-            StartConnection();
-
+          
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -34,23 +33,6 @@ namespace Win.App.Client
 
 
 
-        public static async Task StartConnection()
-        {
-
-            var ipAddress = ConfigurationManager.AppSettings["ServerIpAddress"];
-            var portNumber = ConfigurationManager.AppSettings["ServerPort"];
-            string userName = ConfigurationManager.AppSettings["UserName"];
-            var querystringData = new Dictionary<string, string> { { "user_name", userName } };
-
-            var url = string.Format("http://{0}:{1}", ipAddress, portNumber);
-
-            var hubConnection = new HubConnection(url, querystringData);
-            QuizHubProxy = hubConnection.CreateHubProxy("QuizHub");
-
-            await hubConnection.Start();
-
-
-        }
 
 
 
