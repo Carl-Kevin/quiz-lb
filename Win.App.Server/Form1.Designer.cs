@@ -30,17 +30,15 @@
         {
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContestantScoreDataGrid = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.EasyDataGrid = new System.Windows.Forms.DataGridView();
+            this.PostQuestion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.AverageDataGrid = new System.Windows.Forms.DataGridView();
-            this.PostQuestion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContestantScoreDataGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EasyDataGrid)).BeginInit();
@@ -64,30 +62,13 @@
             this.columnHeader1.Text = "Logs";
             this.columnHeader1.Width = 200;
             // 
-            // dataGridView1
+            // ContestantScoreDataGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(712, 412);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(446, 226);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Players";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Points";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 200;
+            this.ContestantScoreDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ContestantScoreDataGrid.Location = new System.Drawing.Point(712, 412);
+            this.ContestantScoreDataGrid.Name = "ContestantScoreDataGrid";
+            this.ContestantScoreDataGrid.Size = new System.Drawing.Size(446, 226);
+            this.ContestantScoreDataGrid.TabIndex = 5;
             // 
             // tabControl1
             // 
@@ -127,6 +108,14 @@
             this.EasyDataGrid.TabIndex = 0;
             this.EasyDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
             // 
+            // PostQuestion
+            // 
+            this.PostQuestion.HeaderText = "";
+            this.PostQuestion.Name = "PostQuestion";
+            this.PostQuestion.ReadOnly = true;
+            this.PostQuestion.Text = "Post Now";
+            this.PostQuestion.UseColumnTextForButtonValue = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.AverageDataGrid);
@@ -154,14 +143,6 @@
             this.AverageDataGrid.TabIndex = 1;
             this.AverageDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
             // 
-            // PostQuestion
-            // 
-            this.PostQuestion.HeaderText = "";
-            this.PostQuestion.Name = "PostQuestion";
-            this.PostQuestion.ReadOnly = true;
-            this.PostQuestion.Text = "Post Now";
-            this.PostQuestion.UseColumnTextForButtonValue = true;
-            // 
             // dataGridViewButtonColumn1
             // 
             this.dataGridViewButtonColumn1.HeaderText = "";
@@ -176,12 +157,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1163, 643);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ContestantScoreDataGrid);
             this.Controls.Add(this.listView1);
             this.Name = "Form1";
             this.Text = "Server Control";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContestantScoreDataGrid)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.EasyDataGrid)).EndInit();
@@ -195,9 +176,7 @@
 
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView ContestantScoreDataGrid;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView EasyDataGrid;

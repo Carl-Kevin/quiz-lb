@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using App.Model;
 using Microsoft.AspNet.SignalR;
-using Win.App.Server.DataSource;
 
 namespace Win.App.Server
 {
@@ -12,7 +9,7 @@ namespace Win.App.Server
     {
         public Form1()
         {
-            DataGridView.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
         }
 
@@ -22,13 +19,7 @@ namespace Win.App.Server
             SetupQuiz();
         }
 
-
-
-
-        public int CorrectPoint { get; set; }
-
-
-
+         
         private IHubContext _hubContext;
         public IHubContext HubContext
         {
@@ -56,8 +47,6 @@ namespace Win.App.Server
                 return _questionManager;
             }
         }
-
-
 
         private ScoreManager _scoreManager;
         public ScoreManager ScoreManager
@@ -89,9 +78,16 @@ namespace Win.App.Server
         }
 
 
+        public void UpdateAndReloadScore(string  userName, int pointsAdded)
+        {
+            ScoreManager.UpdateScore(userName, pointsAdded);
+            ContestantScoreDataGrid.DataSource = ScoreManager.GetContestantScores();
+        }
+
         private void SetupQuiz()
         {
             EasyDataGrid.DataSource = QuestionManager.GetQuizesByDifficulty(1);
+            ContestantScoreDataGrid.DataSource = ScoreManager.GetContestantScores();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

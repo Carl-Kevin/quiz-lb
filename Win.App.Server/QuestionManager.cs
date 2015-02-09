@@ -10,7 +10,7 @@ namespace Win.App.Server
 
 
         private QuizBeeEntities _context;
-        public QuizBeeEntities Context
+        private QuizBeeEntities Context
         {
             get
             {

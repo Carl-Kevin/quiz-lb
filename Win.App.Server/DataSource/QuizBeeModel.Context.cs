@@ -19,6 +19,7 @@ namespace Win.App.Server.DataSource
         public QuizBeeEntities()
             : base("name=QuizBeeEntities")
         {
+            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

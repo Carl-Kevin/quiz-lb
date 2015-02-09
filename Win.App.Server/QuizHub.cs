@@ -8,7 +8,7 @@ namespace Win.App.Server
 {
     public class QuizHub : Hub
     {
-        int _points = 0;
+
 
         public override Task OnConnected()
         {
@@ -16,7 +16,9 @@ namespace Win.App.Server
 
             var message = string.Format("Connected user : {0}", userName);
             Program.MainForm.WriteToLog(message);
-            Program.MainForm.dataGridView1.Rows.Add(userName.ToString());
+
+            Program.MainForm.UpdateAndReloadScore(userName, 0);//we might even aler the UI to refresh the score
+            
             return base.OnConnected();
         }
 
@@ -36,20 +38,16 @@ namespace Win.App.Server
 
             if (answer.Equals(correctAnswer, StringComparison.OrdinalIgnoreCase))
             {
-                Program.MainForm.CorrectPoint++;
-                //Take note: the correct point should be set to correct person
-                //this is a simultaneous operation and person1 and person2 might send the answer 
-                //almost the same time and the server should handle it
-                //Program.MainForm.label1.Text = Program.MainForm.CorrectPoint.ToString();
-                Program.MainForm.dataGridView1.Rows[0].Cells[1].Value = Program.MainForm.CorrectPoint.ToString();
+               Program.MainForm.UpdateAndReloadScore(userName, 1);//we might even aler the UI to refresh the score
             }
 
-
+            //NOTE: i guess there is no need for this log
             var message = string.Format("{0} from {1} correct: {2}", answer, userName, correctAnswer);
             Program.MainForm.WriteToLog(message);
 
 
         }
+         
 
 
     }
