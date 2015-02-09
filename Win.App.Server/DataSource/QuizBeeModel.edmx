@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuizBeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuizBeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ContestantScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContestantName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
         <EntityType Name="Quiz">
           <Key>
             <PropertyRef Name="QuestionNumber" />
@@ -20,10 +28,10 @@
           <Property Name="DifficultyLevel" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="QuizBeeModelStoreContainer">
+          <EntitySet Name="ContestantScore" EntityType="Self.ContestantScore" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuizBeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -43,7 +51,16 @@
         </EntityType>
         <EntityContainer Name="QuizBeeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Quizes" EntityType="Self.Quiz" />
+          <EntitySet Name="ContestantScores" EntityType="QuizBeeModel.ContestantScore" />
         </EntityContainer>
+        <EntityType Name="ContestantScore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContestantName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +79,15 @@
                 <ScalarProperty Name="TimeFrame" ColumnName="TimeFrame" />
                 <ScalarProperty Name="AnswerKey" ColumnName="AnswerKey" />
                 <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContestantScores">
+            <EntityTypeMapping TypeName="QuizBeeModel.ContestantScore">
+              <MappingFragment StoreEntitySet="ContestantScore">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="ContestantName" ColumnName="ContestantName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

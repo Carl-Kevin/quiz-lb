@@ -27,5 +27,6 @@ namespace Win.App.Server.DataSource
         }
     
         public virtual DbSet<Quiz> Quizes { get; set; }
+        public virtual DbSet<ContestantScore> ContestantScores { get; set; }
     }
 }

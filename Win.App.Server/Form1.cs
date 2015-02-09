@@ -43,19 +43,38 @@ namespace Win.App.Server
             }
         }
 
-        private QuestionFactory _questionFactory;
-        public QuestionFactory QuestionFactory
+        private QuestionManager _questionManager;
+        public QuestionManager QuestionManager
         {
             get
             {
-                if (_questionFactory == null)
+                if (_questionManager == null)
                 {
-                    _questionFactory = new QuestionFactory();
+                    _questionManager = new QuestionManager();
                 }
 
-                return _questionFactory;
+                return _questionManager;
             }
         }
+
+
+
+        private ScoreManager _scoreManager;
+        public ScoreManager ScoreManager
+        {
+            get
+            {
+                if (_scoreManager == null)
+                {
+                    _scoreManager = new ScoreManager();
+                }
+
+                return _scoreManager;
+            }
+            set { _scoreManager = value; }
+        }
+ 
+	
 
         public void WriteToLog(string logMessage)
         {
@@ -72,7 +91,7 @@ namespace Win.App.Server
 
         private void SetupQuiz()
         {
-            EasyDataGrid.DataSource = ReloadData(1);
+            EasyDataGrid.DataSource = QuestionManager.GetQuizesByDifficulty(1);
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,10 +102,10 @@ namespace Win.App.Server
             switch (selectedIndex)
             {
                 case 1:
-                    EasyDataGrid.DataSource = ReloadData(selectedIndex);
+                    EasyDataGrid.DataSource = QuestionManager.GetQuizesByDifficulty(selectedIndex);
                     break;
                 case 2:
-                    AverageDataGrid.DataSource = ReloadData(selectedIndex);
+                    AverageDataGrid.DataSource = QuestionManager.GetQuizesByDifficulty(selectedIndex);
                     break;
                 case 3:
                     //TODO: Bind the other difficulty level grid here
@@ -95,17 +114,7 @@ namespace Win.App.Server
 
         }
 
-        private List<Quiz> ReloadData(int difficultyLevel)
-        {
-            List<Quiz> result;
-            using (var context = new QuizBeeEntities())
-            {
-                result = context.Quizes.Where(m => m.DifficultyLevel == difficultyLevel).ToList();
-            }
-
-            return result;
-        }
-
+       
         private void DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var grid = sender as DataGridView;
